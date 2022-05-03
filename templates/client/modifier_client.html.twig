@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block titre %} Clients {% endblock %}
+
+{% block gestion_page %}Clients {% endblock %}
+
+{% block page_courante %}Modifier un client {% endblock %}
+
+{% block body %}
+
+    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+
+    {% block contenu %}
+
+        <breadcrumb>
+
+            <div class="card-body">
+                {{form_start(form) }}
+                
+                <label class="form-label">Cni</label>
+                <div class="input-group input-group-outline mb-3">
+                    {{form_widget (form.cni, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <label class="form-label">Nom</label>
+                <div class="input-group input-group-outline mb-3">
+                    {{form_widget (form.nom, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+               
+                <label class="form-label">Prenom</label>
+                <div class="input-group input-group-outline mb-3">
+                    {{form_widget (form.prenom, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <label class="form-label">Telephone</label>
+                <div class="input-group input-group-outline mb-3">
+                    {{form_widget (form.telephone, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <label class="form-label">Nom utilisateur</label>
+                <div class="input-group input-group-outline mb-3">   
+                    {{form_widget (form.nom_utilisateur, {'attr': {'class': 'form-control'}}) }}
+                </div>
+
+                <label class="form-label">Mot de passe</label>
+                <div class="input-group input-group-outline mb-3"> 
+                    {{form_widget (form.mot_de_passe, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                
+                
+                <div class="text-center">
+                    <input type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" value="Enregistrer">
+                </div>
+                {{ form_end(form)}}
+            </div>
+            
+        </div>
+        </div>
+        <footer class="footer position-absolute bottom-2 py-2 w-100">
+            <div class="container">
+            <div class="row align-items-center justify-content-lg-between">
+                
+            </div>
+            </div>
+        </footer>
+        
+
+    {% endblock %}
+
+    {% endblock %}
+

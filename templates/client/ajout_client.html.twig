@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un client{% endblock %}
+
+{% block body %}
+{{ include('client/_form.html.twig') }}
+
+    <a href="{{ path('app_list_client') }}">back to list</a>
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    {% block contenu %}
+
+        <breadcrumb>
+
+        <div class="card-body">
+            {{form_start(form) }}
+            <div class="input-group input-group-outline mb-3">
+                <label class="form-label">Cni</label>
+                {{form_widget (form.cni, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="input-group input-group-outline mb-3">
+                <label class="form-label">Nom</label>
+                {{form_widget (form.nom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="input-group input-group-outline mb-3">
+                <label class="form-label">Prenom</label>
+                    {{form_widget (form.prenom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+                <div class="input-group input-group-outline mb-3">
+                <label class="form-label">Telephone</label>
+                    {{form_widget (form.telephone, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="input-group input-group-outline mb-3">
+                <label class="form-label">nom de l'utilisateur</label>
+                {{form_widget (form.nom_utilisateur, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="input-group input-group-outline mb-3">
+                <label class="form-label">Mot de passe</label>
+                {{form_widget (form.mot_de_passe, {'attr': {'class': 'form-control','type':'password'}}) }}
+            </div>
+                        
+            <div class="text-center">
+                <input type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" value="Enregistrer">
+            </div>
+            {{ form_end(form)}}
+        </div>
+
+    {% endblock %}
+{% endblock %}

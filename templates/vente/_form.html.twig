@@ -1,0 +1,22 @@
+    {{form_start(form) }}
+        <div class="input-group input-group-outline mb-3">
+            <label class="form-label">Date Vente</label>
+            {{form_widget (form.date_vente) }}
+        </div>
+        <div class="input-group input-group-outline mb-3">
+            <label class="form-label">Montant</label>
+            {{form_widget (form.montant) }}
+        </div>
+        <div class="input-group input-group-outline mb-3">
+            <label class="form-label">Voiture</label>
+                {{form_widget (form.voiture) }}
+        </div>
+            <div class="input-group input-group-outline mb-3">
+            <label class="form-label">Client</label>
+                {{form_widget (form.client) }}
+        </div>
+                    
+        <div class="text-center">
+            <input type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" value="{{ button_label|default('Save') }}">
+        </div>
+    {{ form_end(form)}}

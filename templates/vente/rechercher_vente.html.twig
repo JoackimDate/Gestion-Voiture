@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block titre %} Ventes {% endblock %}
+
+{% block gestion_page %}Ventes {% endblock %}
+
+{% block page_courante %}Résultat de la recherche {% endblock %}
+
+{% block contenu %}
+
+  
+ <div class="row">
+
+        <div>
+           <a class="btn btn-outline-primary btn-sm mb-4" href="{{url('ventes')}}"><i class="material-icons text-sm me-2">keyboard_return</i>Retour</a>
+       </div>
+               
+       <div class="col-12">
+         <div class="card my-4">
+           <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+               <h6 class="text-white text-capitalize ps-3">Liste des Ventes</h6>
+             </div>
+           </div>
+           <div class="card-body px-0 pb-2">
+             <div class="table-responsive p-0">
+               <table class="table align-items-center mb-0">
+                 <thead>
+                   <tr>
+                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date Vente</th>
+                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Montant</th>
+                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Client</th>
+                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Voiture</th>
+                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Actions</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                 {% if ventes == [] %}
+
+                   <tr>
+                     <td>
+                       <div class="d-flex px-2 py-1">
+                         <div class="d-flex flex-column justify-content-center">
+                           <h6 class="mb-0 text-sm">Pas de resultat pour la recherche éffectuée.</h6>
+                         </div>
+                       </div>
+                     </td>
+
+                   <tr>
+
+                 {% else %}
+                 {% for vente in ventes %}
+                     
+                 
+                   <tr>
+                     <td>
+                       <div class="d-flex px-2 py-1">
+                         <div class="d-flex flex-column justify-content-center">
+                           <h6 class="mb-0 text-sm">{{loop.index}}</h6>
+                         </div>
+                       </div>
+                     </td>
+
+                     <td>
+                       <div class="d-flex px-2 py-1">
+                         <div class="d-flex flex-column justify-content-center">
+                           <h6 class="mb-0 text-sm">{{vente.dateVente.format('d/m/Y')}}</h6>
+                         </div>
+                       </div>
+                     </td>
+
+                     <td>
+                       <div class="d-flex px-2 py-1">
+                         <div class="d-flex flex-column justify-content-center">
+                           <h6 class="mb-0 text-sm">{{vente.montant}}</h6>
+                         </div>
+                       </div>
+                     </td>
+
+                     <td>
+                       <div class="d-flex px-2 py-1">
+                         <div class="d-flex flex-column justify-content-center">
+                           <h6 class="mb-0 text-sm">{{vente.client}}</h6>
+                         </div>
+                       </div>
+                     </td>
+
+                     <td>
+                       <div class="d-flex px-2 py-1">
+                         <div class="d-flex flex-column justify-content-center">
+                           <h6 class="mb-0 text-sm">{{vente.voiture}}</h6>
+                         </div>
+                       </div>
+                     </td>
+
+
+                     <td>
+                       <div class="d-flex px-2 py-1">
+                         <div class="d-flex flex-row justify-content-center">
+                           <a class="btn btn-link text-dark btn-sm mb-0" href="{{url('afficher_vente',{'id':vente.id})}}"><i class="material-icons text-sm me-2">visibility</i>Afficher</a>
+                           <a class="btn btn-link text-dark btn-sm mb-0" href="{{url('modifier_vente',{'id':vente.id})}}"><i class="material-icons text-sm me-2">edit</i>Modifier</a>
+                           <a class="btn btn-link text-danger btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="material-icons text-sm me-2">delete</i>Supprimer</a>
+                           <!-- Modal -->
+                           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog">
+                               <div class="modal-content">
+                                 <div class="modal-header">
+                                   <h5 class="modal-title" id="exampleModalLabel">Suppression vente</h5>
+                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                 </div>
+                                 <div class="modal-body">
+                                   Etes vous sur de vouloir supprimer cet élément? </br>
+                                   Cette action est irréversible!
+                                 </div>
+                                 <div class="modal-footer">
+                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                   <a href="{{url('supprimer_vente',{'id':vente.id})}}"><button type="button" class="btn btn-primary">Supprimer</button></a>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                     </td>
+             
+                   </tr>
+                   
+                   {% endfor %}
+
+                   {% endif %}
+
+                   
+                 </tbody>
+               </table>
+             </div>
+           </div>
+         </div>
+       </div>
+ </div>
+
+
+{% endblock %}

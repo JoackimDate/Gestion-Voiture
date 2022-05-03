@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% block gestion_page %}Clients{% endblock %}
+    {% block page_courante %}Afficher un Client{% endblock %}
+
+    {% block contenu %}
+
+        <div class="col-md-7 mt-4">
+            <div>
+                <a class="btn btn-outline-primary btn-sm mb-4" href="{{url('app_list_client')}}"><i class="material-icons text-sm me-2">keyboard_return</i>Retour</a>
+            </div>
+        
+          <div class="card">
+            <div class="card-header pb-0 px-3">
+              <h3 class="mb-0">Informations Sur le Client:</h3>
+            </div>
+            <div class="card-body pt-4 p-3 mt-3">
+                <div class="d-flex flex-column mr-4">
+                    <h6 class="mb-3 text-lg">{{client.nom}} {{client.prenom}}</h6>
+                    {% comment %} <span class="mb-2 text-sm">Date Naissancce: <span class="text-dark font-weight-bold ms-sm-2">{{client.dateNaissance.format('d/m/y')}}</span></span> {% endcomment %}
+                    <span class="mb-2 text-sm">Telephone: <span class="text-dark font-weight-bold ms-sm-2">{{client.telephone}}</span></span>
+                    <span class="mb-2 text-sm">Nom Utilisateur: <span class="text-dark ms-sm-2 font-weight-bold">{{client.nomUtilisateur}}</span></span>
+                    <span class="text-sm">CNI: <span class="text-dark ms-sm-2 font-weight-bold">{{client.cni}}</span></span>
+                    <span class="text-sm">Mot de Passe: <span class="text-dark ms-sm-2 font-weight-bold">{{client.motDePasse}}</span></span>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+
+{% comment %} <div class="col-12">
+        
+    <div class="card my-4">
+    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+        <h6 class="text-white text-capitalize ps-3">Clients</h6>
+        <div class="col-6 text-end">
+        </div>
+    </div>
+    
+    <div class="card-body px-0 pb-2">
+    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+        <form action="{{path('Client')}}" method= "GET">
+            <div class="input-group input-group-outline">
+                <label class="form-label">Search here...</label>
+                <input type="text" class="form-control" name="cni" >
+            </div>
+        </form>
+    </div>
+        <div class="table-responsive p-0">
+        
+        <a class="btn bg-gradient-dark mb-0" href="{{ path('app_client_ajout') }}"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Ajouter un Client</a>
+        <table class="table align-items-center mb-0">
+            <thead>
+                <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">id</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Cni</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prenom</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Telephone</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom de l'utilisateur</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mot de passe</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+                    <th class="text-secondary opacity-7"></th>
+                </tr>
+            </thead>
+            
+            <tr>
+                <td>
+                    <div class="d-flex px-2 py-1">
+                        {{ client.id }}    
+                    </div>
+                </td>
+
+                <td>
+                        {{ client.cni }} 
+                </td>
+
+                <td class="align-middle text-center text-sm">
+                        {{ client.nom }} 
+                </td>
+
+                <td class="align-middle text-center">
+                        {{ client.prenom }}
+                </td>
+
+                <td class="align-middle text-center">
+                        {{ client.telephone }}
+                </td>
+
+                <td class="align-middle">
+                        {{ client.nomUtilisateur }}
+                </td>
+
+                <td class="align-middle">
+                        {{ client.motDePasse }} 
+                </td>
+
+                <td>
+                    <div class="d-flex px-2 py-1">
+                        <div class="ms-auto text-end">
+                            <a class="btn btn-link text-dark px-3 mb-0" href="{{ path('app_modifier_client', {'id': client.id}) }}"><i class="material-icons text-sm me-2">edit</i>MODIFIER</a>
+                            <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="{{ path('app_supprimer_client', {'id': client.id}) }}"><i class="material-icons text-sm me-2">delete</i>SUPPRIMER</a>
+                            
+                        </div>
+                    </div>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div> {% endcomment %}

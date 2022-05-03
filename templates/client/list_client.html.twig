@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+    {% block gestion_page %}Clients{% endblock %}
+    {% block page_courante %}Listes des Clients{% endblock %}
+
+    {% block contenu %}
+            <div class="row">
+            <div class="col-12">
+                <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                    <h6 class="text-white text-capitalize ps-3">Clients</h6>
+                    <div class="col-6 text-end">
+                    </div>
+                </div>
+                
+                <div class="card-body px-0 pb-2">
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                    <form action="{{path('Client')}}" method= "GET">
+                        <div class="input-group input-group-outline">
+                            <label class="form-label">Search here...</label>
+                            <input type="text" class="form-control" name="cni" >
+                        </div>
+                    </form>
+                </div>
+                <div class="table-responsive p-0">
+                
+                <a class="btn bg-gradient-dark mb-0" href="{{ path('app_client_ajout') }}"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Ajouter un Client</a>
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Cni</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prenom</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Telephone</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom de l'utilisateur</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mot de passe</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+                            <th class="text-secondary opacity-7"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if clients == [] %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="mb-0 text-sm">Pas encore de client, ajoutez en pour commencer.</h6>
+                                    </div>
+                                    </div>
+                                </td>
+                            <tr>
+                        {% else %}
+                        {% for client in clients %}
+                        <tr>
+                            <td>
+                                <div class="d-flex px-2 py-1">
+                                    {{ loop.index }}    
+                                </div>
+                            </td>
+
+                            <td>
+                                    {{ client.cni }} 
+                            </td>
+
+                            <td class="align-middle text-center text-sm">
+                                    {{ client.nom }} 
+                            </td>
+
+                            <td class="align-middle text-center">
+                                    {{ client.prenom }}
+                            </td>
+
+                            <td class="align-middle text-center">
+                                    {{ client.telephone }}
+                            </td>
+
+                            <td class="align-middle">
+                                    {{ client.nomUtilisateur }}
+                            </td>
+
+                            <td class="align-middle">
+                                    {{ client.motDePasse }} 
+                            </td>
+
+                            {% if is_granted("ROLE_GERANT") %}
+
+                            <td>
+                                <div class="d-flex px-2 py-1">
+                                    <div class="ms-auto text-end">
+                                        <a class="btn btn-link text-dark px-3 mb-0" href=" {{ path('app_afficher_client', {'id': client.id}) }}"class="btn btn-secondary">AFFICHER</a>
+                                        <a class="btn btn-link text-dark px-3 mb-0" href="{{ path('app_modifier_client', {'id': client.id}) }}"><i class="material-icons text-sm me-2">edit</i>MODIFIER</a>
+                                        <a class="btn btn-link text-danger btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="material-icons text-sm me-2">delete</i>Supprimer</a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Suppression client</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Etes vous sur de vouloir supprimer cet élément? </br>
+                                                    Cette action est irréversible!
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <a href="{{url('app_supprimer_client',{'id':client.id })}}"><button type="button" class="btn btn-primary">Supprimer</button></a>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %} 
+                        {% endif %}                        
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endblock %} 
+
